@@ -16,16 +16,16 @@ The following command line options are available:
 
 1. Download the source files and store them in a directory
 2. Go to that directory in a terminal window
-3. To built the executable file, type make
-4. To install the executable file, type make install as a
+3. To built the executable file, type `make`
+4. To install the executable file, type `make install` as a
 superuser.  The Makefile will copy the executable file into the
-/usr/bin directory.  If you want it elsewhere, feel free to copy
+`/usr/bin` directory.  If you want it elsewhere, feel free to copy
 it by hand instead.
 
 ## Troubleshooting
 
 _**eqselect: Command not found.**_  
-**eqselect** is not found in your executables' path.  Try make install
+`eqselect` is not found in your executables' path.  Try make install
 as a superuser
 
 _**ERROR: No file to execute in the current directory.**_  
@@ -35,7 +35,7 @@ command line option.
 
 ## Version history
 
-0.9       2015/06/20     Initial release
+0.9 - 2015/06/20 - Initial release
 
 ## TO DO List
 
