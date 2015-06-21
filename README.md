@@ -25,8 +25,7 @@ it by hand instead.
 ## Troubleshooting
 
 _**eqselect: Command not found.**_  
-`eqselect` is not found in your executables' path.  Try make install
-as a superuser
+`eqselect` is not found in your executables' path.  Try `make install` as a superuser.
 
 _**ERROR: No file to execute in the current directory.**_  
 **eqselect** looks for media files in the current directory and
