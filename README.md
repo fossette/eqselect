@@ -7,9 +7,9 @@ an so on, thus the name EQualSELECT.  VLC is used as the default player.
 
 The following command line options are available:  
   _**-c**_    Continuous selection instead of the default random selection.  
-  _**-l**_    Consider the current directory as a leaf, i.e. sub-directories are ignored.
-  _**-r**_    Repeat the last executed file.
-  _**-z**_    Reset the executed files list
+  _**-l**_    Consider the current directory as a leaf, i.e. sub-directories are ignored.  
+  _**-r**_    Repeat the last executed file.  
+  _**-z**_    Reset the executed files list.
 
   Optional parameter: the directory to use.  If not specified, the current directory is used.
 
