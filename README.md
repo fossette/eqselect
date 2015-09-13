@@ -35,7 +35,8 @@ command line option.
 
 ## Version history
 
-0.9 - 2015/06/20 - Initial release
+0.9  - 2015/06/20 - Initial release  
+0.91 - 2015/09/13 - Repeat the last executed file
 
 ## TO DO List
 
