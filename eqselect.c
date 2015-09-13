@@ -3,9 +3,9 @@
  *
  * Author:  fossette
  *
- * Date:    2015/06/20
+ * Date:    2015/09/13
  *
- * Version: 0.9
+ * Version: 0.91
  *
  * Descr:   Select a random file in a directory tree and execute it
  *          according to its file type.  If used numerous times, all files
@@ -18,6 +18,7 @@
  *                   random selection.
  *             -l    Consider the current directory as a leaf,
  *                   i.e. sub-directories are ignored.
+ *             -r    Repeat the last executed file.
  *             -z    Reset the executed files list
  *
  *          Optional parameter: the directory to use.
@@ -93,6 +94,7 @@ typedef  struct
 
 static int        giOptionContinu = 0,
                   giOptionLeaf = 0,
+                  giOptionRepeatLast = 0,
                   giOptionReset = 0;
 static FILELIST   gaAvailableFilenames,
                   gaExecutedFilenames;
@@ -420,8 +422,8 @@ main(int argc, char** argv)
    strcat(gszExecutedFileName, DIRSEP);
    strcat(gszExecutedFileName, EXECUTEDFILENAMES);
 
-   printf(NL "eqselect v0.9" NL
-             "-------------" NL
+   printf(NL "eqselect v0.91" NL
+             "--------------" NL
              "https://github.com/fossette/eqselect/wiki" NL NL);
 
    if (!iErr)
@@ -434,10 +436,16 @@ main(int argc, char** argv)
             {
                if (strcmp(argv[i], "-l"))
                {
-                  if (strcmp(argv[i], "-z"))
-                     chdir(argv[i]);
+                  if (strcmp(argv[i], "-r"))
+                  {
+                     if (strcmp(argv[i], "-z"))
+                        chdir(argv[i]);
+                     else
+                        giOptionReset = 1;
+
+                  }
                   else
-                     giOptionReset = 1;
+                     giOptionRepeatLast = 1;
                }
                else
                   giOptionLeaf = 1;
@@ -466,8 +474,17 @@ main(int argc, char** argv)
          }
       }
 
-      // Find files that can be executed
-      iErr = ParseCurrentDirectory("");
+      if (giOptionRepeatLast && gaExecutedFilenames.n)
+      {
+         sprintf(sz, "%s \"%s\" &", DEFAULTPLAYER, gaExecutedFilenames.array[
+                                                      gaExecutedFilenames.n - 1]);
+         system(sz);
+         iErr = ERROR_EQSELECT_QUIT;
+      }
+
+      if (!iErr)
+         // Find files that can be executed
+         iErr = ParseCurrentDirectory("");
    }
 
    if (!(iErr || gaAvailableFilenames.n))
